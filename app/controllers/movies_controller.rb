@@ -11,12 +11,13 @@ class MoviesController < ApplicationController
   end
 
   def index
+
     @all_ratings = Movie.uniq.pluck(:rating) # Retrieve the list of unique ratings inside the table movies
+    @selected_ratings = []
 
     if params[:ratings]
-      selected_ratings = []
-      params[:ratings].each {|key, value| selected_ratings << key}
-      @movies = Movie.where(["rating IN (?)", selected_ratings])
+      params[:ratings].each {|key, value| @selected_ratings << key}
+      @movies = Movie.where(["rating IN (?)", @selected_ratings])
     elsif params[:sort]
       @movies = Movie.order(params[:sort])
       if params[:sort] == 'title'
@@ -27,6 +28,7 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.all
     end
+
   end
 
   def new
