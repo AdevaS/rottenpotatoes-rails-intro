@@ -8,9 +8,6 @@
     = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), id: 'ratings_#{rating}' # check_box_tag(name, value = "1", checked = false, options = {})
   = submit_tag 'Refresh', id: 'ratings_submit'
 
-  = @all_ratings.class
-  = @selected_ratings.class
-
 %table#movies
   %thead
     %tr
