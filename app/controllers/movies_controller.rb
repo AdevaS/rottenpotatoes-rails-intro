@@ -27,6 +27,7 @@ class MoviesController < ApplicationController
       end
     else
       @movies = Movie.all
+      @selected_ratings = Movie.uniq.pluck(:rating)
     end
 
   end
